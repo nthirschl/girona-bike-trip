@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timeline — Girona Gravel Trip</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .legend-dot.noah-wynne { background: var(--accent); }
+    .legend-dot.nico-kate { background: var(--blue); }
+    .legend-dot.parley { background: var(--purple); }
+    .legend-dot.everyone { background: var(--green); }
+
+    .day {
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .day-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .day-date {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      white-space: nowrap;
+    }
+
+    .day-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .events {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-left: 1.5rem;
+      border-left: 2px solid var(--border);
+    }
+
+    .event {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: var(--card);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .event::before {
+      content: '';
+      position: absolute;
+      left: -1.85rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+    }
+
+    .event.noah-wynne::before { background: var(--accent); border-color: var(--accent); }
+    .event.nico-kate::before { background: var(--blue); border-color: var(--blue); }
+    .event.parley::before { background: var(--purple); border-color: var(--purple); }
+    .event.everyone::before { background: var(--green); border-color: var(--green); }
+
+    .event-time {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      min-width: 55px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .event-body { flex: 1; }
+
+    .event-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .event-detail {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .tag.flight { background: var(--accent-light); color: var(--accent); }
+    .tag.train { background: var(--blue-light); color: var(--blue); }
+    .tag.stay { background: var(--green-light); color: var(--green); }
+    .tag.bike { background: #fff3cd; color: #856404; }
+    .tag.tbd { background: #f0f0f0; color: #999; }
+
+    .day-banner {
+      padding: 1rem 1.5rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-left: 1.5rem;
+      border-left: 3px solid var(--green);
+    }
+
+    .day-banner .banner-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .day-banner .banner-detail {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .open-items {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .open-items h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .open-items ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .open-items li {
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .open-items li::before {
+      content: '\25CB\0020';
+      color: var(--border);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-brand" href="index.html">Girona Gravel Trip</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="timeline.html" class="active">Timeline</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="packing-list.html">Packing List</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>Timeline</h1>
+      <div class="subtitle">Early March 2026 &middot; Catalunya, Spain</div>
+    </div>
+
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot noah-wynne"></div> Noah &amp; Wynne</div>
+      <div class="legend-item"><div class="legend-dot nico-kate"></div> Nico &amp; Kate</div>
+      <div class="legend-item"><div class="legend-dot parley"></div> Parley</div>
+      <div class="legend-item"><div class="legend-dot everyone"></div> Everyone</div>
+    </div>
+
+    <!-- Mar 3 -->
+    <div class="day">
+      <div class="day-header">
+        <div class="day-date">Tue, Mar 3</div>
+        <div class="day-label">Travel day → Girona</div>
+      </div>
+      <div class="events">
+        <div class="event noah-wynne">
+          <div class="event-time">11:00</div>
+          <div class="event-body">
+            <div class="event-title">Arrive Barcelona <span class="tag flight">Flight</span></div>
+            <div class="event-detail">Noah &amp; Wynne · Land at BCN</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">~12:30</div>
+          <div class="event-body">
+            <div class="event-title">Meet at Barcelona Sants</div>
+            <div class="event-detail">Noah, Wynne, Nico &amp; Kate · Regroup at train station</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">~13:00</div>
+          <div class="event-body">
+            <div class="event-title">Train to Girona <span class="tag train">AVE/AVANT</span></div>
+            <div class="event-detail">Noah, Wynne, Nico &amp; Kate · Barcelona Sants → Girona · ~38 min</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">~13:38</div>
+          <div class="event-body">
+            <div class="event-title">Arrive Girona</div>
+            <div class="event-detail">Noah, Wynne, Nico &amp; Kate · Lunch &amp; explore old town (check-in at 15:00)</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">15:00</div>
+          <div class="event-body">
+            <div class="event-title">Check in — Montse's Home <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Carrer Ferran Agulló, 3 · Self check-in (lockbox)</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">TBD</div>
+          <div class="event-body">
+            <div class="event-title">Pick up rented gravel bikes <span class="tag bike">Bike</span></div>
+            <div class="event-detail">Everyone · Details TBD</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mar 4 -->
+    <div class="day">
+      <div class="day-header">
+        <div class="day-date">Wed, Mar 4</div>
+        <div class="day-label">Bike tour — Day 1</div>
+      </div>
+      <div class="events">
+        <div class="event everyone">
+          <div class="event-time">12:00</div>
+          <div class="event-body">
+            <div class="event-title">Checkout — Montse's Home <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Pack up and start riding</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time"></div>
+          <div class="event-body">
+            <div class="event-title">Gravel ride — Day 1 <span class="tag bike">Ride</span></div>
+            <div class="event-detail">Everyone · Girona → Begur · 44.1 mi</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">16:00</div>
+          <div class="event-body">
+            <div class="event-title">Check in — Jordi's Home, Begur <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Carrer Can Ferran, 1 · Checkout 11:00 next day</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mar 5 -->
+    <div class="day">
+      <div class="day-header">
+        <div class="day-date">Thu, Mar 5</div>
+        <div class="day-label">Bike tour — Day 2</div>
+      </div>
+      <div class="events">
+        <div class="event everyone">
+          <div class="event-time">11:00</div>
+          <div class="event-body">
+            <div class="event-title">Checkout — Jordi's Home, Begur <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Pack up and start riding</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time"></div>
+          <div class="event-body">
+            <div class="event-title">Gravel ride — Day 2 <span class="tag bike">Ride</span></div>
+            <div class="event-detail">Everyone · Begur → Llagostera via coast · 47.2 mi</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">TBD</div>
+          <div class="event-body">
+            <div class="event-title">Check in — Apartment in Llagostera <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Airbnb · Near Greenways/Carrilet II route</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mar 6 -->
+    <div class="day">
+      <div class="day-header">
+        <div class="day-date">Fri, Mar 6</div>
+        <div class="day-label">Bike tour — Day 3 → back to Girona</div>
+      </div>
+      <div class="events">
+        <div class="event everyone">
+          <div class="event-time">TBD</div>
+          <div class="event-body">
+            <div class="event-title">Checkout — Apartment in Llagostera <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Checkout time TBD</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time"></div>
+          <div class="event-body">
+            <div class="event-title">Gravel ride — Day 3 <span class="tag bike">Ride</span></div>
+            <div class="event-detail">Everyone · Route TBD · Return to Girona area</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">TBD</div>
+          <div class="event-body">
+            <div class="event-title">Drop off rented gravel bikes <span class="tag bike">Bike</span></div>
+            <div class="event-detail">Everyone · Details TBD</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">15:00</div>
+          <div class="event-body">
+            <div class="event-title">Check in — Monica's Home <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Carrer Alemanys, 12 · Girona Old Town · Park at Ferrater Mora Square, walk 5 min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mar 7 -->
+    <div class="day">
+      <div class="day-header">
+        <div class="day-date">Sat, Mar 7</div>
+        <div class="day-label">Departure day</div>
+      </div>
+      <div class="events">
+        <div class="event everyone">
+          <div class="event-time">early</div>
+          <div class="event-body">
+            <div class="event-title">Checkout — Monica's Home <span class="tag stay">Stay</span></div>
+            <div class="event-detail">Everyone · Checkout 11:00 but early departure needed for train</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">~07:30</div>
+          <div class="event-body">
+            <div class="event-title">Train to Barcelona <span class="tag train">AVE/AVANT</span></div>
+            <div class="event-detail">Everyone · Girona → Barcelona Sants · ~38 min</div>
+          </div>
+        </div>
+        <div class="event everyone">
+          <div class="event-time">~08:45</div>
+          <div class="event-body">
+            <div class="event-title">Arrive BCN Airport</div>
+            <div class="event-detail">Everyone · Via R2 train from Sants</div>
+          </div>
+        </div>
+        <div class="event noah-wynne">
+          <div class="event-time">11:05</div>
+          <div class="event-body">
+            <div class="event-title">Depart to Cagliari <span class="tag flight">Flight</span></div>
+            <div class="event-detail">Noah &amp; Wynne · VY6164 · BCN → CAG · Arrives 12:35</div>
+          </div>
+        </div>
+        <div class="event nico-kate">
+          <div class="event-time">12:35</div>
+          <div class="event-body">
+            <div class="event-title">Depart to Lisbon <span class="tag flight">Flight</span></div>
+            <div class="event-detail">Nico &amp; Kate · TP1033 · BCN → LIS · Arrives 13:35</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="open-items">
+      <h2>Open Items</h2>
+      <ul>
+        <li>Parley's arrival &amp; departure flights</li>
+        <li>Day 3 bike route (Llagostera → Girona)</li>
+        <li>Bike rental details (pickup &amp; drop-off)</li>
+        <li>Confirm exact AVE/AVANT train times &amp; book tickets</li>
+      </ul>
+    </div>
+
+    <div class="page-footer">
+      Last updated: Feb 2026
+    </div>
+  </div>
+</body>
+</html>

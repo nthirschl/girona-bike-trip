@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Packing List — Girona Gravel Trip</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .category {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .category h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .category ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .category li {
+      padding: 0.3rem 0;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .category li::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      margin-top: 3px;
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      background: var(--bg);
+    }
+
+    .category li .note {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .weather-note {
+      background: var(--blue-light);
+      border: 1px solid #b8d8eb;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+      color: var(--blue);
+    }
+
+    .weather-note strong {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-brand" href="index.html">Girona Gravel Trip</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="packing-list.html" class="active">Packing List</a></li>
+    </ul>
+  </nav>
+
+  <div class="page">
+    <div class="page-header">
+      <h1>Packing List</h1>
+      <div class="subtitle">Multi-day gravel bike tour &middot; Early March</div>
+    </div>
+
+    <div class="weather-note">
+      <strong>Girona in early March</strong>
+      Expect 8–16 °C (46–61 °F), partly cloudy with a chance of rain. Mornings can be cool. Pack layers.
+    </div>
+
+    <div class="categories">
+
+      <div class="category">
+        <h2>On the Bike</h2>
+        <ul>
+        </ul>
+      </div>
+
+      <div class="category">
+        <h2>Off the Bike</h2>
+        <ul>
+        </ul>
+      </div>
+
+      <div class="category">
+        <h2>Bike Gear &amp; Repair</h2>
+        <ul>
+        </ul>
+      </div>
+
+      <div class="category">
+        <h2>Tech &amp; Navigation</h2>
+        <ul>
+        </ul>
+      </div>
+
+      <div class="category">
+        <h2>Essentials</h2>
+        <ul>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="page-footer">
+      Last updated: Feb 2026
+    </div>
+  </div>
+</body>
+</html>

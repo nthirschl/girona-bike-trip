@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map — Girona Gravel Trip</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body { overflow: hidden; }
+
+    .map-layout {
+      display: flex;
+      height: calc(100vh - 56px);
+    }
+
+    .sidebar {
+      width: 340px;
+      min-width: 340px;
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+
+    .sidebar h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar .subtitle {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sidebar h2 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .sidebar h2:first-of-type { margin-top: 0; }
+
+    .place {
+      padding: 0.6rem 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 0.35rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 1px solid transparent;
+    }
+
+    .place:hover {
+      background: var(--bg);
+      border-color: var(--border);
+    }
+
+    .place-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .place-detail {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 0.4rem;
+      vertical-align: middle;
+    }
+
+    .dot.accommodation { background: var(--accent); }
+    .dot.poi { background: var(--blue); }
+    .dot.transport { background: var(--purple); }
+    .dot.route { background: var(--green); }
+
+    .legend-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .legend-bar span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    #map {
+      flex: 1;
+      min-height: 100%;
+    }
+
+    .custom-popup .leaflet-popup-content-wrapper {
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .popup-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .popup-detail {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .no-route-msg {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: #f9f6f0;
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .route-stats {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="nav-brand" href="index.html">Girona Gravel Trip</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="timeline.html">Timeline</a></li>
+      <li><a href="map.html" class="active">Map</a></li>
+      <li><a href="packing-list.html">Packing List</a></li>
+    </ul>
+  </nav>
+
+  <div class="map-layout">
+    <div class="sidebar">
+      <h1>Map</h1>
+      <div class="subtitle">Accommodations, route &amp; points of interest</div>
+
+      <div class="legend-bar">
+        <span><span class="dot accommodation"></span> Accommodation</span>
+        <span><span class="dot transport"></span> Transport hub</span>
+        <span><span class="dot poi"></span> Point of interest</span>
+        <span><span class="dot route"></span> Bike route</span>
+      </div>
+
+      <h2>Accommodations</h2>
+      <div class="place" onclick="flyTo(41.9830, 2.8245, 16)">
+        <div class="place-name"><span class="dot accommodation"></span>Montse's Home</div>
+        <div class="place-detail">Night 1 · Mar 3 · C/ Ferran Agulló, 3 · <a href="https://www.airbnb.com/rooms/555038775280960093" target="_blank">Airbnb</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9543, 3.2070, 15)">
+        <div class="place-name"><span class="dot accommodation"></span>Jordi's Home, Begur</div>
+        <div class="place-detail">Night 2 · Mar 4 · C/ Can Ferran, 1 · <a href="https://www.airbnb.com/rooms/14332773" target="_blank">Airbnb</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.8257, 2.8902, 15)">
+        <div class="place-name"><span class="dot accommodation"></span>Apartment, Llagostera</div>
+        <div class="place-detail">Night 3 · Mar 5 · <a href="https://www.airbnb.com/rooms/25357142" target="_blank">Airbnb listing</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9876, 2.8256, 17)">
+        <div class="place-name"><span class="dot accommodation"></span>Monica's Home</div>
+        <div class="place-detail">Night 4 · Mar 6 · C/ Alemanys, 12 · <a href="https://www.airbnb.com/rooms/1414868" target="_blank">Airbnb</a></div>
+      </div>
+
+      <h2>Transport</h2>
+      <div class="place" onclick="flyTo(41.3793, 2.1400, 15)">
+        <div class="place-name"><span class="dot transport"></span>Barcelona Sants</div>
+        <div class="place-detail">Train station · AVE/AVANT to Girona</div>
+      </div>
+      <div class="place" onclick="flyTo(41.2971, 2.0785, 14)">
+        <div class="place-name"><span class="dot transport"></span>Barcelona El Prat (BCN)</div>
+        <div class="place-detail">Airport · Arrivals &amp; departures</div>
+      </div>
+      <div class="place" onclick="flyTo(41.9794, 2.8173, 15)">
+        <div class="place-name"><span class="dot transport"></span>Girona Station</div>
+        <div class="place-detail">Train station · AVE/AVANT from Barcelona</div>
+      </div>
+
+      <h2>Bike Route</h2>
+      <div class="place" onclick="fitRoute('day1')">
+        <div class="place-name"><span class="dot route"></span>Day 1: Girona → Begur area</div>
+        <div class="place-detail"><a href="https://ridewithgps.com/routes/54043479" target="_blank">RideWithGPS</a></div>
+        <div class="route-stats" id="day1-stats">Loading...</div>
+      </div>
+
+      <div class="place" onclick="fitRoute('day2')">
+        <div class="place-name"><span class="dot route"></span>Day 2: Begur → Llagostera via coast</div>
+        <div class="place-detail"><a href="https://ridewithgps.com/routes/54043808?privacy_code=HfvwR4NHSjHibXqwkO1ROKiF9Cgw5sA8" target="_blank">RideWithGPS</a></div>
+        <div class="route-stats" id="day2-stats">Loading...</div>
+      </div>
+
+      <h2>Points of Interest</h2>
+      <div class="place" onclick="flyTo(41.9747, 2.9987, 16)">
+        <div class="place-name"><span class="dot poi"></span>Pla&ccedil;a Jaume I, Monells</div>
+        <div class="place-detail">Day 1 · Medieval arcaded square</div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-gpx@1.7.0/gpx.js"></script>
+  <script>
+    // ── Map init ──
+    const map = L.map('map', {
+      zoomControl: true,
+    }).setView([41.98, 2.82], 11);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 19,
+    }).addTo(map);
+
+    // ── Custom icon factory ──
+    function makeIcon(color) {
+      return L.divIcon({
+        className: '',
+        html: `<svg width="28" height="36" viewBox="0 0 28 36" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 0C6.27 0 0 6.27 0 14c0 10.5 14 22 14 22s14-11.5 14-22C28 6.27 21.73 0 14 0z" fill="${color}"/>
+          <circle cx="14" cy="13" r="5.5" fill="white"/>
+        </svg>`,
+        iconSize: [28, 36],
+        iconAnchor: [14, 36],
+        popupAnchor: [0, -36],
+      });
+    }
+
+    const icons = {
+      accommodation: makeIcon('#c45d3e'),
+      transport: makeIcon('#7b6b8a'),
+      poi: makeIcon('#3a7ca5'),
+    };
+
+    // ── Markers ──
+    const places = [
+      {
+        name: "Montse's Home",
+        detail: "Night 1 · Mar 3<br>C/ Ferran Agulló, 3, Girona 17002<br>Check-in 15:00 (lockbox)<br><a href='https://www.airbnb.com/rooms/555038775280960093' target='_blank'>Airbnb listing</a>",
+        lat: 41.9830, lng: 2.8245,
+        type: 'accommodation',
+      },
+      {
+        name: "Jordi's Home, Begur",
+        detail: "Night 2 · Mar 4<br>C/ Can Ferran, 1, Begur 17255<br>Check-in 16:00<br><a href='https://www.airbnb.com/rooms/14332773' target='_blank'>Airbnb listing</a>",
+        lat: 41.9543, lng: 3.2070,
+        type: 'accommodation',
+      },
+      {
+        name: "Apartment, Llagostera",
+        detail: "Night 3 · Mar 5<br>Llagostera, Catalunya<br><a href='https://www.airbnb.com/rooms/25357142' target='_blank'>Airbnb listing</a>",
+        lat: 41.8257, lng: 2.8902,
+        type: 'accommodation',
+      },
+      {
+        name: "Monica's Home",
+        detail: "Night 4 · Mar 6<br>C/ Alemanys, 12, Girona 17004<br>Check-in 15:00 · Park at Ferrater Mora Sq.<br><a href='https://www.airbnb.com/rooms/1414868' target='_blank'>Airbnb listing</a>",
+        lat: 41.9876, lng: 2.8256,
+        type: 'accommodation',
+      },
+      {
+        name: "Plaça Jaume I, Monells",
+        detail: "Day 1 stop<br>Medieval arcaded square · 17th-c. market town<br>Edge of Gavarres Natural Park",
+        lat: 41.9747, lng: 2.9987,
+        type: 'poi',
+      },
+      {
+        name: "Barcelona Sants",
+        detail: "Train station<br>AVE/AVANT to Girona (~38 min)",
+        lat: 41.3793, lng: 2.1400,
+        type: 'transport',
+      },
+      {
+        name: "Barcelona El Prat (BCN)",
+        detail: "Airport<br>Arrivals &amp; departures for all travelers",
+        lat: 41.2971, lng: 2.0785,
+        type: 'transport',
+      },
+      {
+        name: "Girona Station",
+        detail: "Train station<br>AVE/AVANT from Barcelona",
+        lat: 41.9794, lng: 2.8173,
+        type: 'transport',
+      },
+    ];
+
+    places.forEach(p => {
+      L.marker([p.lat, p.lng], { icon: icons[p.type] })
+        .addTo(map)
+        .bindPopup(
+          `<div class="popup-title">${p.name}</div><div class="popup-detail">${p.detail}</div>`,
+          { className: 'custom-popup', maxWidth: 260 }
+        );
+    });
+
+    // ── Train route line (Barcelona → Girona, approximate) ──
+    const trainRoute = [
+      [41.2971, 2.0785],  // BCN Airport
+      [41.3793, 2.1400],  // Barcelona Sants
+      [41.9794, 2.8173],  // Girona Station
+    ];
+
+    L.polyline(trainRoute, {
+      color: '#7b6b8a',
+      weight: 2,
+      dashArray: '8, 8',
+      opacity: 0.6,
+    }).addTo(map);
+
+    // ── GPX Routes ──
+    const routes = {};
+
+    function loadGPX(id, url, color) {
+      const gpxLayer = new L.GPX(url, {
+        async: true,
+        polyline_options: {
+          color: color,
+          weight: 3.5,
+          opacity: 0.85,
+          lineCap: 'round',
+        },
+        marker_options: {
+          startIconUrl: null,
+          endIconUrl: null,
+          shadowUrl: null,
+          wptIconUrls: { '': null },
+        },
+      });
+
+      gpxLayer.on('loaded', function(e) {
+        const gpx = e.target;
+        routes[id] = gpx;
+
+        // Update stats in sidebar
+        const dist = (gpx.get_distance() / 1000).toFixed(1);
+        const elevGain = Math.round(gpx.get_elevation_gain());
+        const statsEl = document.getElementById(id + '-stats');
+        if (statsEl) {
+          statsEl.textContent = dist + ' km \u00B7 ' + elevGain + ' m elevation gain';
+        }
+      });
+
+      gpxLayer.addTo(map);
+    }
+
+    // Load GPX routes
+    loadGPX('day1', 'bike-route/Possible_day_1_-_Girona_to_Begur_area.gpx', '#5a8a5e');
+    loadGPX('day2', 'bike-route/Possible_second_day_-_Begur_to_Llagostera_via_coast.gpx', '#3a7ca5');
+
+    // ── Fit to route ──
+    function fitRoute(id) {
+      if (routes[id]) {
+        map.fitBounds(routes[id].getBounds(), { padding: [60, 60] });
+      }
+    }
+
+    // ── Fit all markers (initial view) ──
+    const bounds = L.latLngBounds(places.map(p => [p.lat, p.lng]));
+    map.fitBounds(bounds, { padding: [60, 60] });
+
+    // ── Sidebar fly-to ──
+    function flyTo(lat, lng, zoom) {
+      map.flyTo([lat, lng], zoom, { duration: 1 });
+    }
+  </script>
+</body>
+</html>

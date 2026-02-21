@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=DM+Serif+Display&display=swap');
+
+:root {
+  --bg: #faf9f6;
+  --text: #2c2c2c;
+  --muted: #7a7a7a;
+  --accent: #c45d3e;
+  --accent-light: #f1e0d8;
+  --blue: #3a7ca5;
+  --blue-light: #ddeef7;
+  --green: #5a8a5e;
+  --green-light: #ddeedd;
+  --purple: #7b6b8a;
+  --purple-light: #e8e0f0;
+  --border: #e0ddd8;
+  --card: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── Navigation ── */
+
+nav {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .nav-brand {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.15rem;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+nav .nav-links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+nav .nav-links a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  transition: background 0.15s, color 0.15s;
+}
+
+nav .nav-links a:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+nav .nav-links a.active {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+/* ── Page container ── */
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* ── Page header ── */
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-header h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin-bottom: 0.25rem;
+}
+
+.page-header .subtitle {
+  font-size: 1.1rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+/* ── Footer ── */
+
+.page-footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
