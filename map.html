@@ -140,6 +140,62 @@
       color: var(--muted);
       margin-top: 0.2rem;
     }
+
+    .sidebar-toggle {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .map-layout {
+        flex-direction: column;
+        height: calc(100vh - 44px);
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 44px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        min-width: 0;
+        z-index: 900;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        padding: 1rem;
+      }
+
+      .sidebar.open {
+        transform: translateY(0);
+      }
+
+      .sidebar-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        position: fixed;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 950;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 0.5rem 1.1rem;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text);
+        cursor: pointer;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      }
+
+      #map {
+        height: 100%;
+      }
+    }
   </style>
 </head>
 <body>
@@ -153,8 +209,10 @@
     </ul>
   </nav>
 
+  <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776; Places</button>
+
   <div class="map-layout">
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
       <h1>Map</h1>
       <div class="subtitle">Accommodations, route &amp; points of interest</div>
 
@@ -373,6 +431,7 @@
     function fitRoute(id) {
       if (routes[id]) {
         map.fitBounds(routes[id].getBounds(), { padding: [60, 60] });
+        closeSidebar();
       }
     }
 
@@ -383,6 +442,16 @@
     // ── Sidebar fly-to ──
     function flyTo(lat, lng, zoom) {
       map.flyTo([lat, lng], zoom, { duration: 1 });
+      closeSidebar();
+    }
+
+    // ── Mobile sidebar toggle ──
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('open');
     }
   </script>
 </body>
