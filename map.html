@@ -268,10 +268,48 @@
         <div class="route-stats" id="day2-stats">Loading...</div>
       </div>
 
-      <h2>Points of Interest</h2>
-      <div class="place" onclick="flyTo(41.9747, 2.9987, 16)">
-        <div class="place-name"><span class="dot poi"></span>Pla&ccedil;a Jaume I, Monells</div>
-        <div class="place-detail">Day 1 · Medieval arcaded square</div>
+      <h2>Day 1 Stops</h2>
+      <div class="place" onclick="flyTo(41.9902, 2.9563, 16)">
+        <div class="place-name"><span class="dot poi"></span>Madremanya</div>
+        <div class="place-detail">Medieval stone village · Church of Sant Esteve · <a href="https://costabrava.org/en/where-to-go/counties/girones/madremanya/" target="_blank">Info</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9749, 2.9992, 16)">
+        <div class="place-name"><span class="dot poi"></span>Monells</div>
+        <div class="place-detail">Pla&ccedil;a Jaume I — stunning arcaded medieval square · <a href="https://en.wikipedia.org/wiki/Monells" target="_blank">Wikipedia</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9586, 3.0398, 15)">
+        <div class="place-name"><span class="dot poi"></span>La Bisbal d'Empord&agrave;</div>
+        <div class="place-detail">Ceramics capital of Catalonia · Pottery shops on C/ de l'Aig&uuml;eta · <a href="https://www.visitlabisbal.cat/es/ceramica-de-la-bisbal" target="_blank">Info</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9709, 3.1451, 16)">
+        <div class="place-name"><span class="dot poi"></span>Pals</div>
+        <div class="place-detail">Medieval hilltop village · Romanesque Torre de les Hores · <a href="https://en.wikipedia.org/wiki/Pals" target="_blank">Wikipedia</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9564, 3.2086, 16)">
+        <div class="place-name"><span class="dot poi"></span>Begur Castle</div>
+        <div class="place-detail">Free, open 24h · 360&deg; Costa Brava &amp; Pyrenees views · <a href="https://www.begur.cat/castell-de-begur" target="_blank">Info</a></div>
+      </div>
+
+      <h2>Day 2 Stops</h2>
+      <div class="place" onclick="flyTo(41.8897, 3.1810, 16)">
+        <div class="place-name"><span class="dot poi"></span>Calella de Palafrugell</div>
+        <div class="place-detail">Whitewashed fishing village · Cam&iacute; de Ronda path to Llafranc · <a href="https://en.wikipedia.org/wiki/Calella_de_Palafrugell" target="_blank">Wikipedia</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.8490, 3.1280, 15)">
+        <div class="place-name"><span class="dot poi"></span>Palam&oacute;s</div>
+        <div class="place-detail">Prawn capital of Costa Brava · Largest fishing port on the coast · <a href="https://en.wikipedia.org/wiki/Palam%C3%B3s" target="_blank">Wikipedia</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.7810, 3.0290, 15)">
+        <div class="place-name"><span class="dot poi"></span>Sant Feliu de Gu&iacute;xols</div>
+        <div class="place-detail">Benedictine monastery &amp; Porta Ferrada · <a href="https://en.wikipedia.org/wiki/Monestir_de_Sant_Feliu_de_Gu%C3%ADxols" target="_blank">Wikipedia</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.7214, 2.9317, 15)">
+        <div class="place-name"><span class="dot poi"></span>Tossa de Mar</div>
+        <div class="place-detail">Vila Vella — only fortified medieval town on Catalan coast · <a href="https://visittossa.com/en/cultural-heritage/tossa-throughout-time/the-walled-vila-vella/" target="_blank">Info</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.8289, 2.8919, 16)">
+        <div class="place-name"><span class="dot poi"></span>Castell de Llagostera</div>
+        <div class="place-detail">12th-c. castle · Panoramic views from tower · <a href="https://ca.wikipedia.org/wiki/Castell_de_Llagostera" target="_blank">Wikipedia</a></div>
       </div>
     </div>
 
@@ -338,10 +376,66 @@
         lat: 41.9876, lng: 2.8256,
         type: 'accommodation',
       },
+      // Day 1 stops
       {
-        name: "Plaça Jaume I, Monells",
-        detail: "Day 1 stop<br>Medieval arcaded square · 17th-c. market town<br>Edge of Gavarres Natural Park",
-        lat: 41.9747, lng: 2.9987,
+        name: "Madremanya",
+        detail: "Day 1 · Medieval stone village<br>Fortified Romanesque church of Sant Esteve<br><a href='https://costabrava.org/en/where-to-go/counties/girones/madremanya/' target='_blank'>More info</a>",
+        lat: 41.9902, lng: 2.9563,
+        type: 'poi',
+      },
+      {
+        name: "Monells",
+        detail: "Day 1 · Best lunch stop<br>Plaça Jaume I — stunning 13th-c. arcaded medieval square<br>Try: Trattoria Olimpia (Thu–Sun) or Monki<br><a href='https://en.wikipedia.org/wiki/Monells' target='_blank'>Wikipedia</a>",
+        lat: 41.9749, lng: 2.9992,
+        type: 'poi',
+      },
+      {
+        name: "La Bisbal d'Empordà",
+        detail: "Day 1 · Ceramics capital of Catalonia<br>Pottery shops line Carrer de l'Aigüeta · Sampere artisan workshop<br>Lunch: La Cantonada (~€15 menu with wine)<br><a href='https://www.visitlabisbal.cat/es/ceramica-de-la-bisbal' target='_blank'>More info</a>",
+        lat: 41.9586, lng: 3.0398,
+        type: 'poi',
+      },
+      {
+        name: "Pals",
+        detail: "Day 1 · Medieval hilltop village<br>Romanesque Torre de les Hores (11th–13th c.)<br><a href='https://en.wikipedia.org/wiki/Pals' target='_blank'>Wikipedia</a>",
+        lat: 41.9709, lng: 3.1451,
+        type: 'poi',
+      },
+      {
+        name: "Begur Castle",
+        detail: "Day 1 · Free, open 24h<br>360° views of Costa Brava, Medes Islands &amp; Pyrenees — best at sunset<br>Dinner: Turandot, Pati Blau, or L'autèntic<br><a href='https://www.begur.cat/castell-de-begur' target='_blank'>More info</a>",
+        lat: 41.9564, lng: 3.2086,
+        type: 'poi',
+      },
+      // Day 2 stops
+      {
+        name: "Calella de Palafrugell",
+        detail: "Day 2 · Prettiest Costa Brava fishing village<br>Walk the Camí de Ronda coastal path to Llafranc (~30 min)<br>Food: Calau (tapas &amp; pintxos) or Margarita (Med food &amp; sea views)<br><a href='https://en.wikipedia.org/wiki/Calella_de_Palafrugell' target='_blank'>Wikipedia</a>",
+        lat: 41.8897, lng: 3.1810,
+        type: 'poi',
+      },
+      {
+        name: "Palamós",
+        detail: "Day 2 · Prawn capital of Costa Brava<br>Famous gamba de Palamós · Largest fishing port on the coast<br>Food: Can Blau (seafood &amp; fideuà)<br><a href='https://en.wikipedia.org/wiki/Palam%C3%B3s' target='_blank'>Wikipedia</a>",
+        lat: 41.8490, lng: 3.1280,
+        type: 'poi',
+      },
+      {
+        name: "Sant Feliu de Guíxols",
+        detail: "Day 2 · Former cork-industry town<br>10th-c. Benedictine monastery with Porta Ferrada (pre-Romanesque arches)<br>Food: Casa Teva or Casa Elisa (~€18 set menu)<br><a href='https://en.wikipedia.org/wiki/Monestir_de_Sant_Feliu_de_Gu%C3%ADxols' target='_blank'>Wikipedia</a>",
+        lat: 41.7810, lng: 3.0290,
+        type: 'poi',
+      },
+      {
+        name: "Tossa de Mar",
+        detail: "Day 2 · Vila Vella — only fortified medieval town on Catalan coast<br>Walk the 13th-c. walls up to the lighthouse for views<br>Food: Popa Tapes (lunch, sea views) or Pou de la Vila (tasting menu)<br><a href='https://visittossa.com/en/cultural-heritage/tossa-throughout-time/the-walled-vila-vella/' target='_blank'>More info</a>",
+        lat: 41.7214, lng: 2.9317,
+        type: 'poi',
+      },
+      {
+        name: "Castell de Llagostera",
+        detail: "Day 2 · 12th-c. castle atop the town hill<br>Panoramic views: sea, Gavarres, Pyrenees &amp; Montseny from the tower<br><a href='https://ca.wikipedia.org/wiki/Castell_de_Llagostera' target='_blank'>Wikipedia</a>",
+        lat: 41.8289, lng: 2.8919,
         type: 'poi',
       },
       {
