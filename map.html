@@ -424,8 +424,9 @@
     }
 
     // Load GPX routes
-    loadGPX('day1', 'bike-route/Possible_day_1_-_Girona_to_Begur_area.gpx', '#5a8a5e');
-    loadGPX('day2', 'bike-route/Possible_second_day_-_Begur_to_Llagostera_via_coast.gpx', '#3a7ca5');
+    const cacheBust = '?v=' + Date.now();
+    loadGPX('day1', 'bike-route/Possible_day_1_-_Girona_to_Begur_area.gpx' + cacheBust, '#5a8a5e');
+    loadGPX('day2', 'bike-route/Possible_second_day_-_Begur_to_Llagostera_via_coast.gpx' + cacheBust, '#3a7ca5');
 
     // ── Fit to route ──
     function fitRoute(id) {
