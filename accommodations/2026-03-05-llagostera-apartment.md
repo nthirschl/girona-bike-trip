@@ -2,10 +2,10 @@
 
 - **Type:** Apartment
 - **Host:** TBD
-- **Address:** Llagostera, Catalunya, Spain (exact address TBD)
-- **Coordinates:** 41.82566, 2.89022
-- **Check-in:** Thu, 2026-03-05 (time TBD)
-- **Checkout:** Fri, 2026-03-06 (time TBD)
+- **Address:** Carrer de la Constància, 20, Llagostera, Catalunya 17240
+- **Coordinates:** 41.8266, 2.8910
+- **Check-in:** Thu, 2026-03-05 at 12:00
+- **Checkout:** Fri, 2026-03-06 at 12:00
 - **Guests:** Noah, Wynne, Nico, Kate, Parley (all 5)
 - **Max capacity:** 4 guests (listed)
 - **Cost:** TBD
