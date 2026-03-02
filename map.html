@@ -315,6 +315,32 @@
         <div class="place-name"><span class="dot poi"></span>Castell de Llagostera</div>
         <div class="place-detail">12th-c. castle · Panoramic views from tower · <a href="https://ca.wikipedia.org/wiki/Castell_de_Llagostera" target="_blank">Wikipedia</a></div>
       </div>
+
+      <h2>Girona Spots</h2>
+      <div class="place" onclick="flyTo(41.9848, 2.8253, 18)">
+        <div class="place-name"><span class="dot poi"></span>Zanpanzar</div>
+        <div class="place-detail">Basque pintxos bar · C/ de Cort-Reial, 10 · Evenings; Sat &amp; Sun lunch too · <a href="https://www.tripadvisor.com/Restaurant_Review-g187499-d1641883-Reviews-Zanpanzar-Girona_Province_of_Girona_Catalonia.html" target="_blank">TripAdvisor</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9818, 2.8228, 18)">
+        <div class="place-name"><span class="dot poi"></span>Casa Cacao</div>
+        <div class="place-detail">Bean-to-bar chocolate shop &amp; caf&eacute; by the Roca brothers · Pla&ccedil;a de Catalunya, 23 · Daily 10:00–20:30 · <a href="https://casacacaogirona.com/en/" target="_blank">Website</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9830, 2.8245, 18)">
+        <div class="place-name"><span class="dot poi"></span>L'Antiga</div>
+        <div class="place-detail">Century-old xocolateria · Famous hot chocolate &amp; melindros · Pla&ccedil;a del Vi, 8 · Mon–Sat 8:00–21:00 · <a href="https://www.timeout.com/girona/bars-and-pubs/xocolateria-lantiga" target="_blank">Timeout</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9870, 2.8243, 18)">
+        <div class="place-name"><span class="dot poi"></span>Queviures L'Estuca</div>
+        <div class="place-detail">Old-quarter grocery &amp; deli · Local produce, craft beer · Pujada de Sant Feliu, 13 · Daily 9:00–23:00 · <a href="https://www.elgourmetcatala.cat/fitxa/queviures-lestuca/" target="_blank">Info</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9850, 2.8225, 18)">
+        <div class="place-name"><span class="dot poi"></span>Oniria Caf&eacute;</div>
+        <div class="place-detail">Specialty coffee &amp; vegan pastries · C/ Nord, 11 · Tue–Sat 9–17, Sun 11–17 · <a href="https://www.oniriacafe.com/" target="_blank">Website</a></div>
+      </div>
+      <div class="place" onclick="flyTo(41.9839, 2.8169, 18)">
+        <div class="place-name"><span class="dot poi"></span>La Puntual</div>
+        <div class="place-detail">Artisanal bakery · Outstanding croissants &amp; pastries · C/ Ramon Turr&oacute; i Darder, 33 · Mon–Sat 7:30–15:30 · <a href="https://www.lapuntual.cat/" target="_blank">Website</a></div>
+      </div>
     </div>
 
     <div id="map"></div>
@@ -440,6 +466,43 @@
         name: "Castell de Llagostera",
         detail: "Day 2 · 12th-c. castle atop the town hill<br>Panoramic views: sea, Gavarres, Pyrenees &amp; Montseny from the tower<br><a href='https://ca.wikipedia.org/wiki/Castell_de_Llagostera' target='_blank'>Wikipedia</a>",
         lat: 41.8289, lng: 2.8919,
+        type: 'poi',
+      },
+      // Girona spots
+      {
+        name: "Zanpanzar",
+        detail: "Basque pintxos bar<br>C/ de Cort-Reial, 10<br>Mon 19–23:30; Tue–Fri 19–00; Sat &amp; Sun 12–16, 19–00<br><a href='https://www.tripadvisor.com/Restaurant_Review-g187499-d1641883-Reviews-Zanpanzar-Girona_Province_of_Girona_Catalonia.html' target='_blank'>TripAdvisor</a>",
+        lat: 41.9848, lng: 2.8253,
+        type: 'poi',
+      },
+      {
+        name: "Casa Cacao",
+        detail: "Bean-to-bar chocolate shop &amp; café by the Roca brothers<br>Plaça de Catalunya, 23<br>Daily 10:00–20:30<br><a href='https://casacacaogirona.com/en/' target='_blank'>Website</a>",
+        lat: 41.9818, lng: 2.8228,
+        type: 'poi',
+      },
+      {
+        name: "L'Antiga",
+        detail: "Century-old xocolateria · Famous hot chocolate &amp; melindros<br>Plaça del Vi, 8<br>Mon–Sat 8:00–21:00<br><a href='https://www.timeout.com/girona/bars-and-pubs/xocolateria-lantiga' target='_blank'>Timeout</a>",
+        lat: 41.9830, lng: 2.8245,
+        type: 'poi',
+      },
+      {
+        name: "Queviures L'Estuca",
+        detail: "Old-quarter grocery &amp; deli · Local produce, craft beer<br>Pujada de Sant Feliu, 13<br>Daily 9:00–23:00<br><a href='https://www.elgourmetcatala.cat/fitxa/queviures-lestuca/' target='_blank'>Info</a>",
+        lat: 41.9870, lng: 2.8243,
+        type: 'poi',
+      },
+      {
+        name: "Oniria Café",
+        detail: "Specialty coffee &amp; vegan pastries<br>C/ Nord, 11<br>Tue–Sat 9:00–17:00; Sun 11:00–17:00; Closed Mon<br><a href='https://www.oniriacafe.com/' target='_blank'>Website</a>",
+        lat: 41.9850, lng: 2.8225,
+        type: 'poi',
+      },
+      {
+        name: "La Puntual",
+        detail: "Artisanal bakery · Outstanding croissants &amp; pastries<br>C/ Ramon Turró i Darder, 33<br>Mon–Sat 7:30–15:30; Closed Sun<br><a href='https://www.lapuntual.cat/' target='_blank'>Website</a>",
+        lat: 41.9839, lng: 2.8169,
         type: 'poi',
       },
       {
